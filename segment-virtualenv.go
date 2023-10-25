@@ -12,6 +12,9 @@ import (
 func segmentVirtualEnv(p *powerline) []pwl.Segment {
 	var env string
 	if env == "" {
+		env, _ = os.LookupEnv("VIRTUAL_ENV_PROMPT")
+	}
+	if env == "" {
 		env, _ = os.LookupEnv("VIRTUAL_ENV")
 		if env != "" {
 			cfg, err := ini.Load(path.Join(env, "pyvenv.cfg"))
